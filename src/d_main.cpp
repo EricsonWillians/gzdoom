@@ -122,6 +122,10 @@
 #include "i_system.h"  // for SHARE_DIR
 #endif // __unix__
 
+#include <pybind11/pybind11.h>
+#include <pybind11/embed.h>
+namespace py = pybind11;
+
 EXTERN_CVAR(Bool, hud_althud)
 EXTERN_CVAR(Int, vr_mode)
 EXTERN_CVAR(Bool, cl_customizeinvulmap)
@@ -3002,6 +3006,8 @@ static void GC_MarkGameRoots()
 
 static int D_DoomMain_Internal (void)
 {
+	py::scoped_interpreter guard{}; // start the interpreter and keep it alive
+    py::print("Hello, World! GZDoom now runs Python :)"); // use the Python API
 	int p;
 	const char *v;
 	const char *wad;
@@ -3621,6 +3627,7 @@ int GameMain()
 		I_ShowFatalError(error.what());
 		ret = -1;
 	}
+
 	// Unless something really bad happened, the game should only exit through this single point in the code.
 	// No more 'exit', please.
 	D_Cleanup();

@@ -1,6 +1,9 @@
 cmake_minimum_required( VERSION 2.8.7 )
 project(GZDoom)
 
+include_directories("/usr/include/python3.8")
+add_subdirectory(pybind11)
+
 if( COMMAND cmake_policy )
 	if( POLICY CMP0011 )
 		cmake_policy( SET CMP0011 NEW )

@@ -1222,6 +1222,7 @@ add_executable( zdoom WIN32 MACOSX_BUNDLE
 	common/thirdparty/math/fastsin.cpp
 	zzautozend.cpp
 )
+target_link_libraries(zdoom PRIVATE pybind11::embed)
 
 set_source_files_properties( ${FASTMATH_SOURCES} PROPERTIES COMPILE_FLAGS ${ZD_FASTMATH_FLAG} )
 set_source_files_properties( xlat/parse_xlat.cpp PROPERTIES OBJECT_DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/xlat_parser.c" )
