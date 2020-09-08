@@ -122,6 +122,9 @@
 #include "i_system.h"  // for SHARE_DIR
 #endif // __unix__
 
+#include <iostream>
+#include "./scripting/pyscript/py_actor.h"
+
 #include <pybind11/pybind11.h>
 #include <pybind11/embed.h>
 namespace py = pybind11;
@@ -3006,6 +3009,7 @@ static void GC_MarkGameRoots()
 
 static int D_DoomMain_Internal (void)
 {
+
 	py::scoped_interpreter guard{}; // start the interpreter and keep it alive
     py::print("Hello, World! GZDoom now runs Python :)"); // use the Python API
 	int p;
