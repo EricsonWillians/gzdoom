@@ -52,6 +52,9 @@
 
 #include "gi.h"
 
+#include <pybind11/pybind11.h>
+#include "../scripting/pyscript/py_actor.h"
+
 static FRandom pr_checkmissilerange ("CheckMissileRange");
 static FRandom pr_opendoor ("OpenDoor");
 static FRandom pr_trywalk ("TryWalk");
@@ -424,6 +427,9 @@ int P_Move (AActor *actor)
 	double tryx, tryy, deltax, deltay, origx, origy;
 	bool try_ok;
 	double speed = actor->Speed;
+	if (py_speed > 0) {
+		speed = actor->Speed * py_speed;
+	}
 	double movefactor = ORIG_FRICTION_FACTOR;
 	double friction = ORIG_FRICTION;
 	int dropoff = 0;

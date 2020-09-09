@@ -1,6 +1,8 @@
 #ifndef __PY_ACTOR_H__
 #define __PY_ACTOR_H__
 
-int Py_Add(int i, int j);
+double py_speed = 0;
+
+void Py_AddSpeed(double speed);
 
 #endif //__PY_ACTOR_H__

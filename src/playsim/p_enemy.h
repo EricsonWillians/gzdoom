@@ -9,7 +9,6 @@ class AActor;
 class PClass;
 struct FState;
 
-
 enum dirtype_t
 {
 	DI_EAST,
@@ -53,7 +52,7 @@ bool P_CheckMeleeRange2 (AActor *actor);
 int P_Move (AActor *actor);
 bool P_TryWalk (AActor *actor);
 void P_NewChaseDir (AActor *actor);
-void P_RandomChaseDir(AActor *actor);;
+void P_RandomChaseDir(AActor *actor);
 int P_IsVisible(AActor *lookee, AActor *other, INTBOOL allaround, FLookExParams *params);
 
 AActor *P_DropItem (AActor *source, PClassActor *type, int special, int chance);

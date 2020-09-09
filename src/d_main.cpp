@@ -122,9 +122,6 @@
 #include "i_system.h"  // for SHARE_DIR
 #endif // __unix__
 
-#include <iostream>
-#include "./scripting/pyscript/py_actor.h"
-
 #include <pybind11/pybind11.h>
 #include <pybind11/embed.h>
 namespace py = pybind11;
@@ -2030,6 +2027,12 @@ static void SetMapxxFlag()
 
 static void D_DoomInit()
 {
+
+	py::scoped_interpreter guard{}; // start the interpreter and keep it alive
+    py::print("Hello, World! GZDoom now runs Python :)"); // use the Python API
+
+	py::module test = py::module::import("test");
+
 	// Set the FPU precision to 53 significant bits. This is the default
 	// for Visual C++, but not for GCC, so some slight math variances
 	// might crop up if we leave it alone.
@@ -2077,6 +2080,7 @@ static void D_DoomInit()
 
 	if (!batchrun) Printf ("M_LoadDefaults: Load system defaults.\n");
 	M_LoadDefaults ();			// load before initing other systems
+
 }
 
 //==========================================================================
@@ -3010,8 +3014,6 @@ static void GC_MarkGameRoots()
 static int D_DoomMain_Internal (void)
 {
 
-	py::scoped_interpreter guard{}; // start the interpreter and keep it alive
-    py::print("Hello, World! GZDoom now runs Python :)"); // use the Python API
 	int p;
 	const char *v;
 	const char *wad;
