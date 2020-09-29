@@ -1,8 +1,8 @@
 #ifndef __PY_ACTOR_H__
 #define __PY_ACTOR_H__
 
-double py_speed = 0;
+extern double py_speed;
 
-void Py_AddSpeed(double speed);
+// void Py_AddSpeed(double speed);
 
-#endif //__PY_ACTOR_H__
+#endif

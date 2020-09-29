@@ -122,8 +122,7 @@
 #include "i_system.h"  // for SHARE_DIR
 #endif // __unix__
 
-#include <pybind11/embed.h>
-namespace py = pybind11;
+#include "scripting/pyscript/py_init.h"
 
 EXTERN_CVAR(Bool, hud_althud)
 EXTERN_CVAR(Int, vr_mode)
@@ -2026,15 +2025,6 @@ static void SetMapxxFlag()
 
 static void D_DoomInit()
 {
-
-	py::initialize_interpreter(); // start the interpreter and keep it alive
-    py::print("Hello, World! GZDoom now runs Python :)"); // use the Python API
-	// py::module sys_path_updater = py::module::import("sys_path_updater");
-	py::module test = py::module::import("_test");
-	py::print(test.attr("__file__"));
-	py::object speed = test.attr("speed");
-	py::print(speed);
-	py::finalize_interpreter();
 	// Set the FPU precision to 53 significant bits. This is the default
 	// for Visual C++, but not for GCC, so some slight math variances
 	// might crop up if we leave it alone.
@@ -3015,6 +3005,8 @@ static void GC_MarkGameRoots()
 
 static int D_DoomMain_Internal (void)
 {
+
+	py_init();
 
 	int p;
 	const char *v;

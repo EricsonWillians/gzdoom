@@ -1003,6 +1003,8 @@ set (PCH_SOURCES
 	scripting/decorate/thingdef_parse.cpp
 	scripting/decorate/thingdef_states.cpp
 	scripting/zscript/zcc_compile_doom.cpp
+	scripting/pyscript/py_init.cpp
+	scripting/pyscript/py_actor.cpp
 	rendering/swrenderer/textures/r_swtexture.cpp
 	rendering/swrenderer/textures/warptexture.cpp
 	rendering/swrenderer/textures/swcanvastexture.cpp
@@ -1232,10 +1234,10 @@ add_executable( zdoom WIN32 MACOSX_BUNDLE
 	zzautozend.cpp
 )
 
-target_include_directories (
-    py_actor
-    PRIVATE ${PYSCRIPT_SOURCE}
-)
+# target_include_directories (
+#     py_init
+#     PRIVATE ${PYSCRIPT_SOURCE}
+# )
 
 target_link_libraries(zdoom PRIVATE pybind11::embed)
 
@@ -1309,6 +1311,7 @@ include_directories( .
 	utility/nodebuilder
 	scripting
 	scripting/zscript
+	scripting/pyscript
 	rendering
 	../libraries/gdtoa
 	../libraries/glslang/glslang/Public
@@ -1450,7 +1453,7 @@ source_group("Platforms\\POSIX Files" REGULAR_EXPRESSION "^${CMAKE_CURRENT_SOURC
 source_group("Platforms\\Win32 Files" REGULAR_EXPRESSION "^${CMAKE_CURRENT_SOURCE_DIR}/win32/.+")
 source_group("Scripting\\Decorate frontend" REGULAR_EXPRESSION "^${CMAKE_CURRENT_SOURCE_DIR}/scripting/decorate/.+")
 source_group("Scripting\\ZScript frontend" REGULAR_EXPRESSION "^${CMAKE_CURRENT_SOURCE_DIR}/scripting/zscript/.+")
-# source_group("Scripting\\Pyscript" REGULAR_EXPRESSION "^${CMAKE_CURRENT_SOURCE_DIR}/scripting/pyscript/.+")
+source_group("Scripting\\Pyscript" REGULAR_EXPRESSION "^${CMAKE_CURRENT_SOURCE_DIR}/scripting/pyscript/.+")
 source_group("Scripting\\Compiler backend" REGULAR_EXPRESSION "^${CMAKE_CURRENT_SOURCE_DIR}/scripting/backend/.+")
 source_group("Scripting" REGULAR_EXPRESSION "^${CMAKE_CURRENT_SOURCE_DIR}/scripting/.+")
 source_group("Common" REGULAR_EXPRESSION "^${CMAKE_CURRENT_SOURCE_DIR}/common/.+")

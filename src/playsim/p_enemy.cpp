@@ -426,10 +426,7 @@ int P_Move (AActor *actor)
 
 	double tryx, tryy, deltax, deltay, origx, origy;
 	bool try_ok;
-	double speed = actor->Speed;
-	if (py_speed > 0) {
-		speed = actor->Speed * py_speed;
-	}
+	double speed = actor->Speed * py_speed;
 	double movefactor = ORIG_FRICTION_FACTOR;
 	double friction = ORIG_FRICTION;
 	int dropoff = 0;
